@@ -1,0 +1,17 @@
+# dependencies
+node_modules
+
+# mac
+.DS_Store
+
+# ReScript
+.bsb.lock
+.merlin
+lib
+*.bs.js
+
+# vscode
+.vscode
+
+# build vite
+/dist
