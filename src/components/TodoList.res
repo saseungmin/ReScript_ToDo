@@ -1,8 +1,8 @@
 @react.component
-let make = (~todos: Types.Todo.todos) => {
-  let (todos, setTodos) = React.useState(() => todos)
-
+let make = (~todos, ~onRemove) => {
   <ul>
-    {Belt.Array.map(todos, todo => <TodoItem key={Belt.Int.toString(todo.id)} todo />)->React.array}
+    {Belt.Array.map(todos, todo =>
+      <TodoItem key={Belt.Int.toString(todo.id)} todo onRemove />
+    )->React.array}
   </ul>
 }
