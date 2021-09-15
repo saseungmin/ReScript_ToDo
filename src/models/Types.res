@@ -7,3 +7,7 @@ module Todo = {
 
   type todos = array<todo>
 }
+
+module Reducer = {
+  type action = RemoveTodo(int)
+}

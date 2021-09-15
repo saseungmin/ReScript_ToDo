@@ -13,3 +13,4 @@
 </a>
 
 #### Todo📆 application created using ReScript with React ⚛️
+- [Learn ReScript with Official Documentation](https://github.com/saseungmin/Learn_ReScript_with_Official_Documentation)

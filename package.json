@@ -4,7 +4,9 @@
   "description": "Todo📆 application created using ReScript with React ⚛️",
   "main": "index.js",
   "scripts": {
-    "dev": "vite & rescript build -w",
+    "clean": "rescript clean -with-deps",
+    "format:res": "rescript format -all",
+    "start": "vite",
     "build": "vite build",
     "serve": "vite preview",
     "re:build": "rescript",
