@@ -9,5 +9,5 @@ module Todo = {
 }
 
 module Reducer = {
-  type action = RemoveTodo(int)
+  type action = RemoveTodo(int) | ToggleTodo(int)
 }
