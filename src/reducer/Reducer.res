@@ -1,6 +1,7 @@
-open Types
+open Types.Reducer
+open Types.Todo
 
-let reducer = (state: Todo.todos, action: Reducer.action) =>
+let reducer = (state: todos, action: action) =>
   switch action {
   | RemoveTodo(id) => Js.Array2.filter(state, todo => todo.id !== id)
   | ToggleTodo(id) =>
