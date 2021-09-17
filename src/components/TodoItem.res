@@ -6,8 +6,8 @@ let make = (~todo: Types.Todo.todo, ~onRemove, ~onToggle) => {
   let handleToggle = _ => onToggle(id)
 
   <li>
-    {React.string(content)}
-    <button onClick={handleRemove}> {React.string("X")} </button>
+    {content->React.string}
+    <button onClick={handleRemove}> {"X"->React.string} </button>
     <input type_="checkbox" checked=completed onChange={handleToggle} />
   </li>
 }
