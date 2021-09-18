@@ -2,8 +2,8 @@
   "name": "ReScript_ToDo",
   "version": "0.0.1",
   "sources": {
-    "dir" : "src",
-    "subdirs" : true
+    "dir": "src",
+    "subdirs": true
   },
   "package-specs": [
     {
@@ -14,7 +14,8 @@
   "suffix": ".bs.js",
   "reason": { "react-jsx": 3 },
   "bs-dependencies": [
-    "@rescript/react", 
-    "@ryyppy/rescript-promise"
+    "@rescript/react",
+    "@ryyppy/rescript-promise",
+    "rescript-recoil"
   ]
 }
