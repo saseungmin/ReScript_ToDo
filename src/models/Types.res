@@ -9,8 +9,6 @@ module Todo = {
     todos: array<todo>,
     nextId: int,
   }
-}
 
-module Reducer = {
   type action = RemoveTodo(int) | ToggleTodo(int) | AddTodo(string)
 }

@@ -1,24 +1,19 @@
-open Types.Reducer
-
-let initialTodos: array<Types.Todo.todo> = [
-  {id: 1, content: "Rescript", completed: false},
-  {id: 2, content: "JavaScript", completed: true},
-  {id: 3, content: "TypeScript", completed: true},
-]
+open Types.Todo
+open Utils
 
 @react.component
 let make = () => {
-  let (state, dispatch) = React.useReducer(Reducer.reducer, {todos: initialTodos, nextId: 4})
+  let (todoList, setTodoList) = Recoil.useRecoilState(Atom.todoListAtom)
 
   let greeting = "What are your plans for today?"
 
-  let onRemove = id => dispatch(RemoveTodo(id))
-  let onToggle = id => dispatch(ToggleTodo(id))
-  let onInsert = content => dispatch(AddTodo(content))
+  let onRemove = id => setTodoList(state => todoActions(state, RemoveTodo(id)))
+  let onToggle = id => setTodoList(state => todoActions(state, ToggleTodo(id)))
+  let onInsert = content => setTodoList(state => todoActions(state, AddTodo(content)))
 
   <>
-    <div> {React.string(greeting)} </div>
+    <h1> {React.string(greeting)} </h1>
     <TodoInput onInsert />
-    <TodoList todos=state.todos onRemove onToggle />
+    <TodoList todos=todoList.todos onRemove onToggle />
   </>
 }

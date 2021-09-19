@@ -1,1 +1,4 @@
-ReactDOM.render(<App />, ReactDOM.querySelector("#app")->Belt.Option.getExn)
+switch ReactDOM.querySelector("#root") {
+| Some(root) => ReactDOM.render(<Recoil.RecoilRoot> <App /> </Recoil.RecoilRoot>, root)
+| None => ()
+}
