@@ -1,14 +1,13 @@
-open Types.Reducer
 open Types.Todo
 
-let reducer = (state, action) =>
+let todoActions = (state, action) =>
   switch action {
   | RemoveTodo(id) =>
-    let todos = Js.Array2.filter(state.todos, todo => todo.id !== id)
+    let todos = state.todos->Js.Array2.filter(todo => todo.id !== id)
 
     {...state, todos: todos}
   | ToggleTodo(id) =>
-    let todos = Belt.Array.map(state.todos, todo =>
+    let todos = state.todos->Belt.Array.map(todo =>
       if todo.id === id {
         {...todo, completed: !todo.completed}
       } else {
@@ -26,7 +25,7 @@ let reducer = (state, action) =>
       },
     ]
 
-    let newTodos = Js.Array2.concat(state.todos, newTodo)
+    let newTodos = state.todos->Belt.Array.concat(newTodo)
 
     {todos: newTodos, nextId: state.nextId + 1}
   }
