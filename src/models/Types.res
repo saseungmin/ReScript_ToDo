@@ -11,4 +11,6 @@ module Todo = {
   }
 
   type action = RemoveTodo(int) | ToggleTodo(int) | AddTodo(string)
+
+  type todoListFilter = ShowAll | ShowCompleted | ShowUncompleted
 }
