@@ -15,3 +15,8 @@ let todoListAtom = Recoil.atom({
   key: "todoListAtom",
   default: initState,
 })
+
+let todoListFilterAtom = Recoil.atom({
+  key: "todoListFilterAtom",
+  default: Todo.ShowAll,
+})

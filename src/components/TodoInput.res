@@ -1,8 +1,12 @@
+open Types.Todo
+
 @module("react")
 external useCallback: ('a, 'b) => 'a = "useCallback"
 
 @react.component
-let make = (~onInsert) => {
+let make = () => {
+  let (_, setTodoState) = Recoil.useRecoilState(Atom.todoListAtom)
+
   let (input, setInput) = React.useState(_ => "")
   let (error, setError) = React.useState(_ => false)
 
@@ -11,7 +15,7 @@ let make = (~onInsert) => {
     setInput(_ => ReactEvent.Form.target(e)["value"])
   }
 
-  let handleInsert = useCallback(e => {
+  let onInsert = useCallback(e => {
     if ReactEvent.Keyboard.key(e) === "Enter" {
       let insertInput = if Js.String.trim(input) === "" {
         None
@@ -22,7 +26,7 @@ let make = (~onInsert) => {
       switch insertInput {
       | None => setError(_ => true)
       | Some(content) =>
-        onInsert(content)
+        setTodoState(state => Utils.todoActions(state, AddTodo(content)))
         setInput(_ => "")
       }
     }
@@ -36,7 +40,6 @@ let make = (~onInsert) => {
   }
 
   <>
-    <input type_="text" value=input onChange={handleChange} onKeyPress={handleInsert} />
-    {errorElement}
+    <input type_="text" value=input onChange={handleChange} onKeyPress={onInsert} /> {errorElement}
   </>
 }

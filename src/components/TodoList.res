@@ -1,8 +1,16 @@
+open Belt
+open Utils
+
 @react.component
-let make = (~todos, ~onRemove, ~onToggle) => {
+let make = (~todos) => {
+  let (_, setTodoState) = Recoil.useRecoilState(Atom.todoListAtom)
+
+  let onRemove = id => setTodoState(state => todoActions(state, RemoveTodo(id)))
+  let onToggle = id => setTodoState(state => todoActions(state, ToggleTodo(id)))
+
   <ul>
-    {Belt.Array.map(todos, todo =>
-      <TodoItem key={todo.id->Belt.Int.toString} todo onRemove onToggle />
+    {Array.map(todos, todo =>
+      <TodoItem key={todo.id->Int.toString} todo onRemove onToggle />
     )->React.array}
   </ul>
 }
