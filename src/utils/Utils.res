@@ -1,6 +1,6 @@
 open Types.Todo
 
-let todoActions = (state, action) =>
+let todoActions = (action, state) =>
   switch action {
   | RemoveTodo(id) =>
     let todos = state.todos->Js.Array2.filter(todo => todo.id !== id)

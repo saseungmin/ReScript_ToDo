@@ -5,7 +5,7 @@ external useCallback: ('a, 'b) => 'a = "useCallback"
 
 @react.component
 let make = () => {
-  let (_, setTodoState) = Recoil.useRecoilState(Atom.todoListAtom)
+  let setTodoState = Recoil.useSetRecoilState(Atom.todoListAtom)
 
   let (input, setInput) = React.useState(_ => "")
   let (error, setError) = React.useState(_ => false)
@@ -26,7 +26,7 @@ let make = () => {
       switch insertInput {
       | None => setError(_ => true)
       | Some(content) =>
-        setTodoState(state => Utils.todoActions(state, AddTodo(content)))
+        content->AddTodo->Utils.todoActions->setTodoState
         setInput(_ => "")
       }
     }

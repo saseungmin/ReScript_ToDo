@@ -1,4 +1,5 @@
 open WithStats
+open Js
 
 @react.component
 let make = () => {
@@ -6,16 +7,14 @@ let make = () => {
     todoWithStats,
   )
 
-  let formattedPercentCompleted = Js.Math.round(percentCompleted *. 100.0)
+  let formattedPercentCompleted = Math.round(percentCompleted *. 100.0)
 
-  let convertToString = num => num->Js.Int.toString
+  let convertToString = num => num->Int.toString
 
   <section>
     <div> {`Total items: ${convertToString(totalNum)}`->React.string} </div>
     <div> {`Items completed: ${convertToString(totalCompletedNum)}`->React.string} </div>
     <div> {`Items not completed: ${convertToString(totalUncompletedNum)}`->React.string} </div>
-    <div>
-      {`Percent completed: ${formattedPercentCompleted->Js.Float.toString}%`->React.string}
-    </div>
+    <div> {`Percent completed: ${formattedPercentCompleted->Float.toString}%`->React.string} </div>
   </section>
 }
