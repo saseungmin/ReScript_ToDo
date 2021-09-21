@@ -7,6 +7,10 @@ let make = () => {
   let greeting = "What are your plans for today?"
 
   <>
-    <h1> {React.string(greeting)} </h1> <TodoInput /> <TodoFilter /> <TodoList todos=todoList />
+    <h1> {greeting->React.string} </h1>
+    <TodoStats />
+    <TodoInput />
+    <TodoFilter />
+    <TodoList todos=todoList />
   </>
 }
