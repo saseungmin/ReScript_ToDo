@@ -3,10 +3,10 @@ open Utils
 
 @react.component
 let make = (~todos) => {
-  let (_, setTodoState) = Recoil.useRecoilState(Atom.todoListAtom)
+  let setTodoState = Recoil.useSetRecoilState(Atom.todoListAtom)
 
-  let onRemove = id => setTodoState(state => todoActions(state, RemoveTodo(id)))
-  let onToggle = id => setTodoState(state => todoActions(state, ToggleTodo(id)))
+  let onRemove = id => id->RemoveTodo->todoActions->setTodoState
+  let onToggle = id => id->ToggleTodo->todoActions->setTodoState
 
   <ul>
     {Array.map(todos, todo =>

@@ -2,7 +2,7 @@ open Types.Todo
 
 @react.component
 let make = () => {
-  let (_, setFilter) = Recoil.useRecoilState(Atom.todoListFilterAtom)
+  let setFilter = Recoil.useSetRecoilState(Atom.todoListFilterAtom)
 
   let onChangeFilter = e => {
     let value = (e->ReactEvent.Form.target)["value"]
