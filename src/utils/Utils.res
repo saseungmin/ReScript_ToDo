@@ -28,4 +28,14 @@ let todoActions = (action, state) =>
     let newTodos = state.todos->Belt.Array.concat(newTodo)
 
     {todos: newTodos, nextId: state.nextId + 1}
+  | EditTodo(id, content) =>
+    let todos = state.todos->Belt.Array.map(todo =>
+      if todo.id === id {
+        {...todo, content: content}
+      } else {
+        todo
+      }
+    )
+
+    {...state, todos: todos}
   }

@@ -10,7 +10,9 @@ module Todo = {
     nextId: int,
   }
 
-  type action = RemoveTodo(int) | ToggleTodo(int) | AddTodo(string)
+  type action = RemoveTodo(int) | ToggleTodo(int) | AddTodo(string) | EditTodo(int, string)
 
   type todoListFilter = ShowAll | ShowCompleted | ShowUncompleted
+
+  type editState = EditInput | ItemView
 }
