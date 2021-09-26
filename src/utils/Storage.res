@@ -1,3 +1,5 @@
+external recordAsJson: 'a => Js.Json.t = "%identity"
+
 @val @scope("window")
 external localStorage: 'a = "localStorage"
 
@@ -9,8 +11,6 @@ external localStorageSetItem: (string, string) => unit = "setItem"
 
 @val @scope(("window", "localStorage", "length"))
 external localStorageLength: int = "length"
-
-let localStorageKey = "__rescript_todo_key__"
 
 let isLocalStorageEmpty = () => {
   switch localStorageLength === 0 {
@@ -26,9 +26,28 @@ let getValueFromLocalStorage = (key: string) => {
   }
 }
 
-let setValueToLocalStorage = (key: string, data: string) => {
+let setValueToLocalStorage = (key: string, data) => {
   switch isLocalStorageEmpty(localStorage) {
   | true => ()
-  | false => localStorageSetItem(key, data)
+  | false => localStorageSetItem(key, data->recordAsJson->Js.Json.stringify)
+  }
+}
+
+module Todo = {
+  external decodeAsObject: 'a => Types.Todo.state = "%identity"
+
+  let todoKey = "__rescript_todo_key__"
+
+  let getTodoFromLocalStorage = defaultValue => {
+    let value = getValueFromLocalStorage(todoKey)
+
+    switch Js.Json.test(value, Js.Json.Null) {
+    | false => value->decodeAsObject
+    | true => defaultValue
+    }
+  }
+
+  let setTodoToLocalStorage = (value: Types.Todo.state) => {
+    todoKey->setValueToLocalStorage(value)
   }
 }
