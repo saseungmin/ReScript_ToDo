@@ -4,7 +4,7 @@ let initialTodos: array<Todo.todo> = []
 
 let initState: Todo.state = {
   todos: initialTodos,
-  nextId: 4,
+  nextId: 1,
 }
 
 let todoListAtom = Recoil.atom({
